@@ -100,11 +100,11 @@ jobs:
           ./src/test/resources/run-s3-tests.sh
 
       #Store the target
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: s3proxy
           path: target/s3proxy
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: pom
           path: pom.xml
