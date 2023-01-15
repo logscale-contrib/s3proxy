@@ -56,16 +56,22 @@ jobs:
   runTests:
     runs-on: ubuntu-20.04
     needs: [meta]
+    strategy:
+      matrix:
+        version: [11, 16, 17]
+        distribution:
+          - temurin
+          - zulu    
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: "recursive"
 
       # These steps are quick and will work or if fail only because of external issues
-      - uses: actions/setup-java@v2
+      - uses: actions/setup-java@v3.9.0
         with:
-          distribution: "temurin"
-          java-version: "11"
+          distribution: ${{ matrix.distribution }}
+          java-version: ${{ matrix.version }}
           cache: "maven"
       - uses: actions/setup-python@v4
         with:
