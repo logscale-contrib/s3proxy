@@ -115,11 +115,11 @@ jobs:
     steps:
       #Yes we need code
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: s3proxy
           path: target
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: pom
           path: .
