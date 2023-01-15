@@ -37,7 +37,7 @@ jobs:
           node-version: "14"
       - name: Docker meta
         id: docker_action_meta
-        uses: docker/metadata-action@v4.0.1
+        uses: docker/metadata-action@v4.3.0
         with:
           images: ghcr.io/${{ github.repository }}/container
           flavor: |
@@ -171,7 +171,7 @@ jobs:
       - name: Docker meta
         if: github.event_name != 'pull_request' && needs.meta.outputs.dockerhub-publish == 'true'
         id: docker_action_meta
-        uses: docker/metadata-action@v4.0.1
+        uses: docker/metadata-action@v4.3.0
         with:
           images: andrewgaul/s3proxy
           flavor: |
