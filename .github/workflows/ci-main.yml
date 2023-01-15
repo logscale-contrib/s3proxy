@@ -59,10 +59,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [11, 16, 17]
+        version:
+          - 11
+          - 16
+          - 17  
         distribution:
           - temurin
-          - zulu    
+          - zulu
     steps:
       - uses: actions/checkout@v2
         with:
