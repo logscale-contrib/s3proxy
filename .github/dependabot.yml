@@ -10,3 +10,7 @@ updates:
     target-branch: "next"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "dep(java)"
+      prefix-development: "chore(javadep)"
+      include: "scope"
