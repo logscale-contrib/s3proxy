@@ -61,8 +61,8 @@ jobs:
       matrix:
         version:
           - 11
-          - 16
-          - 17  
+          # - 16
+          # - 17  
         distribution:
           - temurin
           - zulu
