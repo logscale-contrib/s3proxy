@@ -1,29 +1,59 @@
 {
-    "tagFormat": 's3proxy-${version}',
-        "branches": [
+    "branches": [
+        {
+            "name": "master",
+            "prerelease": false
+        },
+        {
+            "name": "releases/+([0-9])?(\\.\\d+)(\\.\\d+|z|$)",
+            "prerelease": false
+        },
+        {
+            "name": "next",
+            "prerelease": true
+        },
+        {
+            "name": "next-major",
+            "prerelease": true
+        }
+    ],
+    "plugins": [
+        [
+            "@semantic-release/commit-analyzer",
             {
-                "name": 'master',
-                prerelease: false
-            },
+                "preset": "conventionalcommits",
+                "presetConfig": "conventional-changelog-conventionalcommits"
+            }
+        ],
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/exec",
             {
-                "name": 'releases\/+([0-9])?(\.\d+)(\.\d+|z|$)',
-                prerelease: false
-            },
+                "prepareCmd": "mvn versions:set -DnewVersion=${nextRelease.version}",
+                "publishCmd": "mvn --batch-mode deploy -DskipTests"
+            }
+        ],
+        [
+            "@semantic-release/git",
             {
-                "name": 'next',
-                prerelease: false
-            },
+                "assets": [
+                    "pom.xml"
+                ],
+                "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+            }
+        ],
+        [
+            "@semantic-release/github",
             {
-                name: 'next-major',
-                prerelease: true
-            },
-            {
-                name: 'develop',
-                prerelease: true
-            },
-            {
-                name: 'develop\/.*',
-                prerelease: true
+                "assets": [
+                    {
+                        "path": "target/*.jar"
+                    },
+                    {
+                        "path": "target/s3proxy"
+                    }
+                ]
             }
         ]
+    ]
 }
