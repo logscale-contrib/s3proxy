@@ -1,17 +1,24 @@
-FROM openjdk:11-jre-slim
+FROM maven:3.8.7-eclipse-temurin-11 as builder
+
+COPY pom.xml /work/
+COPY src/ /work/src/
+RUN cd /work/; mvn package -DskipTests
+
+
+FROM azul/zulu-openjdk:11.0.17
 LABEL maintainer="Andrew Gaul <andrew@gaul.org>"
 
 WORKDIR /opt/s3proxy
 
-COPY \
-    target/s3proxy \
-    src/main/resources/run-docker-container.sh \
+COPY --from=builder \
+    /work/target/s3proxy \
+    /work/src/main/resources/run-docker-container.sh \
     /opt/s3proxy/
 
 ENV \
     LOG_LEVEL="info" \
     S3PROXY_AUTHORIZATION="aws-v2-or-v4" \
-    S3PROXY_ENDPOINT="http://0.0.0.0:80" \
+    S3PROXY_ENDPOINT="http://0.0.0.0:8080" \
     S3PROXY_IDENTITY="local-identity" \
     S3PROXY_CREDENTIAL="local-credential" \
     S3PROXY_VIRTUALHOST="" \
@@ -34,5 +41,5 @@ ENV \
     JCLOUDS_KEYSTONE_PROJECT_DOMAIN_NAME="" \
     JCLOUDS_FILESYSTEM_BASEDIR="/data"
 
-EXPOSE 80
+EXPOSE 8080
 ENTRYPOINT ["/opt/s3proxy/run-docker-container.sh"]
