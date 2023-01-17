@@ -29,15 +29,16 @@
         [
             "@semantic-release/exec",
             {
-                "prepareCmd": "mvn versions:set -DnewVersion=${nextRelease.version}",
-                "publishCmd": "mvn --batch-mode deploy -DskipTests"
+                "prepareCmd": "./.github/workflows/scripts/prepare.sh ${nextRelease.version}",
+                "publishCmd": "./.github/workflows/scripts/publish.sh ${nextRelease.version}"
             }
         ],
         [
             "@semantic-release/git",
             {
                 "assets": [
-                    "pom.xml"
+                    "pom.xml",
+                    "chart/Chart.yaml"
                 ],
                 "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
             }
