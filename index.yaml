@@ -2,6 +2,18 @@ apiVersion: v1
 entries:
   s3proxy:
   - apiVersion: v2
+    appVersion: 2.1.0-next.7
+    created: "2023-01-17T20:57:20.370878925Z"
+    description: S3 Proxy Chart
+    digest: 528511b14a4b4bec102a97be3e88e985627b4566560cbb4efdde585f05979b69
+    name: s3proxy
+    sources:
+    - https://github.com/gaul/s3proxy/s3proxy.git
+    type: application
+    urls:
+    - https://github.com/logscale-contrib/s3proxy/releases/download/2.1.0-next.7/s3proxy-2.1.0-next.7.tgz
+    version: 2.1.0-next.7
+  - apiVersion: v2
     appVersion: 2.1.0-next.6
     created: "2023-01-17T20:06:56.251867315Z"
     description: S3 Proxy Chart
@@ -13,4 +25,4 @@ entries:
     urls:
     - https://github.com/logscale-contrib/s3proxy/releases/download/2.1.0-next.6/s3proxy-2.1.0-next.6.tgz
     version: 2.1.0-next.6
-generated: "2023-01-17T20:06:56.249346993Z"
+generated: "2023-01-17T20:57:20.369982729Z"
