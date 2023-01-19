@@ -400,7 +400,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-s3</artifactId>
-      <version>1.12.385</version>
+      <version>1.12.387</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
