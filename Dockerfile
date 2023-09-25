@@ -5,7 +5,7 @@ COPY src/ /work/src/
 RUN cd /work/; mvn package -DskipTests
 
 
-FROM azul/zulu-openjdk:11.0.17
+FROM azul/zulu-openjdk:11.0.20.1-11.66.19
 LABEL maintainer="Andrew Gaul <andrew@gaul.org>"
 
 WORKDIR /opt/s3proxy
